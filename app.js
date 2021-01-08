@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const flash = require("connect-flash");
 const Campground = require('./models/campground');
+const User = require('./models/user');
+const Comment = require('./models/comment');
 const bodyParser = require("body-parser");
 
 
