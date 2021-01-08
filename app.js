@@ -60,6 +60,16 @@ app.get('/yelpcamp/campgrounds/:id/edit', async (req, res) => {
 });
 
 
+app.get('/yelpcamp/login', (req, res) => {
+  res.render("login");
+});
+
+app.get('/yelpcamp/register', (req, res) => {
+  res.render("register");
+});
+
+
+
 
 
 

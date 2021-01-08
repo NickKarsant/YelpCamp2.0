@@ -10,11 +10,13 @@
   <h1> <%= campground.title%></h1>
   <h2> <%= campground.location%></h2>
 
+  <img src="https://via.placeholder.com/400" alt="">
+
   <p><%=campground.price%> dollars/night</p>
   <p><%=campground.description%></p>
 
     <button onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>/edit">Edit</button>
-    <button onclick=window.location.href="/yelpcamp/campgrounds">Go Back </button>
+    <button onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
 
 </body>
 </html>
