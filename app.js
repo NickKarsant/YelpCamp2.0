@@ -33,6 +33,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+// Widget app goes here
+app.get('/', (req, res) => {
+  res.send('React app goes here');
+});
+
 // landing page
 app.get('/yelpcamp', (req, res) => {
   res.render('landing');

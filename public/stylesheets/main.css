@@ -1,14 +1,40 @@
+
 .more, .caption{
   display: flex;
   justify-content: center;
 } 
+
+#photos{
+  
+}
+
+
+
+
+
+#map img {
+  display: block;
+  border: 1px solid red;
+  height: 300px;
+  /* The height is 400 pixels */
+  width: 300px;
+  /* The width is the width of the web page */
+}
+.column {
+  float: left;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 
 
 body{
   margin: 0;
   padding: 0;
 }
-
-* {
-  border: 1px solid red;
-} 
