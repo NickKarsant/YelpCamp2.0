@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Add a Campground</title>
-</head>
-<body>
- <div class="container">
-  <div class="row">
+<% layout('layouts/boilerplate') %>
+
+<div class="ui one column stackable center aligned page grid">
+    <div class="column twelve wide">
     <h2>Add a Campground</h2>
     <div class="form">
 
@@ -39,14 +32,9 @@
         </div>
 
       </form>
-      <button onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
     </div>
     
   </div>
 </div>
+<button onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
 
-<br><br>
-
-
-</body>
-</html>

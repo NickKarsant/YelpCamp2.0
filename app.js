@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+
+const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const path = require('path');
 const flash = require("connect-flash");
@@ -24,8 +26,8 @@ mongoose.connect("mongodb://localhost:27017/yelpcamp", {
   console.log(err)
 });
 
-
-
+app.use(express.static('public'));
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));

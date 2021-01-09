@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+<div class="ui one column stackable center aligned page grid">
+  <div class="column twelve wide">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+    <h1>Register</h1>
 
-<body>
-  <h1>Register</h1>
-  
-  <form action="">
-    <div class="form-group">
-      <input class="form-control" type="text" placeholder="Username" name="username">
-    </div>
+    <form action="">
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="Username" name="username">
+      </div>
 
-    <div class="form-group">
-      <input class="form-control" type="password" placeholder="Password" name="password">
-    </div>
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="Password" name="password">
+      </div>
 
-    <div class="form-group">
-      <button class="btn btn-lg btn-primary btn-block">Register</button>
-    </div>
-  </form>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-  <button onclick=window.location.href="/yelpcamp/campgrounds">Homepage</button>
-
-</body>
-
-</html>
+<button onclick=window.location.href="/yelpcamp/campgrounds">Homepage</button>

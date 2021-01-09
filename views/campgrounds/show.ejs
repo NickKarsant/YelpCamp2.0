@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%=campground.title%></title>
-</head>
-<body>
+<% layout('layouts/boilerplate') %>
+
+
   <h1> <%= campground.title%></h1>
   <h2> <%= campground.location%></h2>
 
@@ -18,5 +12,3 @@
     <button onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>/edit">Edit</button>
     <button onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
 
-</body>
-</html>
