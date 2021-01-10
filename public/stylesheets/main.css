@@ -1,15 +1,43 @@
-
-.more, .caption{
+/* HOMEPAGE */
+.jumbotron {
+  margin-top: 7em;
+}
+.more, .caption, .preview{
   display: flex;
   justify-content: center;
 } 
 
 
+#camps{
+  padding: 0.5em;
+  /* border: 1px solid red; */
+}
 
 
 
+/* NAV BAR */
+#navbarText{
+  /* border: 1px solid red !important; */
+  float: right !important;
+}
+
+nav{
+  margin:  0 10px;
+  padding: 0 0 0 0;
+  /* border: 1px solid red !important; */
+}
+
+.navbar-brand{
+  /* border: 1px solid red !important; */
+
+  font-size: 1.3em !important;
+  margin: 0.5em !important;
+  padding: 15px 0 0 0 !important;
+}
 
 
+
+/* SHOW PAGES */
 #map img {
   display: block;
   border: 1px solid red;
@@ -32,7 +60,3 @@
 
 
 
-body{
-  margin: 0;
-  padding: 0;
-}

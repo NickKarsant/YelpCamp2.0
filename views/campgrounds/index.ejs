@@ -12,27 +12,31 @@
   </header>
 </div>
 
-<div id="con" class="ui container">
-<ul>
+<div id="card-list" class="ui container">
 
-  <% for(let campground of allCamps) {%>
-  <div id="camps" class="column col-xs-6 col-sm-4 col-md-3 col-lg-3 ">
+  <div class="ui grid">
+    <% for(let campground of allCamps) {%>
+    <div id="camps" class="col-xs-6 col-sm-4 col-md-3 col-lg-3 ">
 
-    <div class="thumbnail">
-      <img src="<%= campground.image %>">
-      <div class="caption">
-        <h5> <%= campground.title %> </h4>
+      <div class="thumbnail">
+        <div class="preview">
+          <img src="<%= campground.image %>">
+        </div>
+        <div class="caption">
+          <h5> <%= campground.title %> </h4>
+        </div>
+        <p class="more">
+          <button id="more" class="btn btn-primary"
+            onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>">More Info</button>
+        </p>
+
       </div>
-      <p class="more">
-        <button id="more" class="btn btn-primary"
-          onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>">More Info</button>
-      </p>
-
     </div>
+
+    <%}%> 
   </div>
 
-  <%}%> 
-</ul>
 </div>
+
 
   
