@@ -1,48 +1,58 @@
 <% layout('layouts/boilerplate') %>
 
 
-  <div class="container">
-    <div class="row">
-      <h2>Edit <%= campground.title %></h2>
-      <div class="form">
+<div class="top ui one column stackable center aligned page grid">
+  <div class="column twelve wide">
+    <h2>Edit <%= campground.title %></h2>
+    <div class="form">
 
-        <form action="/yelpcamp/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+      <form action="/yelpcamp/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+        <div class="form-group">
+          <input class="form-control" type="text" value="<%=campground.title%>" name="campground[title]">
+        </div>
 
-          <div class="form-group">
-            <input class="form-control" type="text" value="<%=campground.title%>" name="campground[title]">
+
+        <div class="form-group">
+          <input class="form-control" type="text" value="<%=campground.location%>" name="campground[location]">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
           </div>
-
-          <div class="form-group">
-            <input class="form-control" type="text" value="<%=campground.location%>" name="campground[location]">
+          <input type="text" value="<%=campground.price%>" class="form-control"
+            aria-label="Amount (to the nearest dollar)">
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
           </div>
+        </div>
 
-          <div class="form-group">
-            <input class="form-control" type="number" value="<%=campground.price%>" name="campground[price]" min="0.01"
-              step="0.01">
+        <div class="form-group">
+          <input class="form-control" type="text" value="<%=campground.image%>" name="campground[image]">
+        </div>
+
+        <div class="form-group">
+          <input class="form-control" type="text" value="<%=campground.description%>" name="campground[description]">
+        </div>
+
+        <div class="ui one column stackable center aligned page grid">
+          <div class="column six wide">
+            <div class="form-group">
+              <button onclick=window.location.href="/yelpcamp/campgrounds/<%=campground._id%>"
+                class="btn btn-lg btn-primary ">Update Campground</button>
+            </div>
           </div>
+        </div>
+      </form>
 
-          <div class="form-group">
-            <input class="form-control" type="text" value="<%=campground.image%>" name="campground[image]">
-          </div>
-
-          <div class="form-group">
-            <input class="form-control" type="text" value="<%=campground.description%>" name="campground[description]">
-          </div>
-
-          <div class="form-group">
-            <button onclick=window.location.href="/yelpcamp/campgrounds/<%=campground._id%>"
-              class="btn btn-lg btn-primary btn-block">Update Campground</button>
-          </div>
+      <form action="/yelpcamp/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-lg btn-danger ">Delete</button>
+      </form>
 
 
-
-        </form>
-        <form action="/yelpcamp/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
-          <button class="btn btn-lg btn-danger btn-block">Delete</button>
-        </form>
-        <button onclick=window.location.href="/yelpcamp/campgrounds/<%=campground._id%>">Back to Campground</button>
-      </div>
 
     </div>
+    
   </div>
-
+</div>
+<button class="btn btn-lg btn-success" onclick=window.location.href="/yelpcamp/campgrounds/<%=campground._id%>">Back to Campground</button>

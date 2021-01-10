@@ -1,7 +1,9 @@
-/* HOMEPAGE */
-.jumbotron {
-  margin-top: 7em;
-}
+/* .top {
+  margin-top: 7em !important;
+} */
+
+
+
 .more, .caption, .preview{
   display: flex;
   justify-content: center;
