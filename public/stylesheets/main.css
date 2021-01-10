@@ -4,9 +4,7 @@
   justify-content: center;
 } 
 
-#photos{
-  
-}
+
 
 
 
@@ -20,13 +18,13 @@
   width: 300px;
   /* The width is the width of the web page */
 }
-.column {
+.inner {
   float: left;
   padding: 5px;
 }
 
 /* Clear floats after image containers */
-.row::after {
+.outer::after {
   content: "";
   clear: both;
   display: table;

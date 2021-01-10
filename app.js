@@ -26,12 +26,25 @@ mongoose.connect("mongodb://localhost:27017/yelpcamp", {
   console.log(err)
 });
 
-app.use(express.static('public'));
-app.engine('ejs', ejsMate)
+// App Configuration
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', ejsMate)
+
+// App Tools
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+
+
+
+// Routes
+app.use('/yelpcamp/campgrounds', (req,res, next)=>{
+  req.requestTime = Date.now()
+  console.log(`Date: ${req.requestTime}`);
+
+  next();
+})
 
 // Widget app goes here
 app.get('/', (req, res) => {
@@ -56,6 +69,7 @@ app.get('/yelpcamp/campgrounds/new', (req, res) => {
 
 // add campground to database route
 app.post('/yelpcamp/campgrounds', async (req, res) => {
+  console.log(`Date: ${req.requestTime}`);
   const campground = new Campground(req.body.campground)
   await campground.save();
   res.redirect(`/yelpcamp/campgrounds/${campground._id}`)
@@ -105,7 +119,9 @@ app.get('/yelpcamp/register', (req, res) => {
 
 
 
-
+app.use((req,res, next)=>{
+  res.status(404).render("404")
+})
 
 
 app.listen(3000, () => {
