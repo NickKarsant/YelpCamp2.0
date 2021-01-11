@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate') %>
+
+<!-- alternate display for show page -->
+
+
+<h1> <%= campground.title%></h1> 
+ <h3> <%= campground.location%></h3> 
+
+<div>
+  <div class="outer">
+
+    <div class="inner">
+      <img id="photos" src="https://via.placeholder.com/400" alt="various photos of the campsite">
+      <img id="photos" src="https://via.placeholder.com/300" alt="various photos of the campsite">
+    </div>
+
+    <div class="inner">
+      <div id="map"><img
+          src="https://compote.slate.com/images/ff47615b-f476-4479-af98-add0a5255c80.jpeg?width=840&rect=1560x1040&offset=0x0">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p><%=campground.price%> dollars/night</p>
+<p><%=campground.description%></p>
+
+
+<button class="btn btn-lg btn-success" onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>

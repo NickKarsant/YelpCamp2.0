@@ -41,7 +41,6 @@ app.use(methodOverride('_method'));
 // Routes
 app.use('/yelpcamp/campgrounds', (req,res, next)=>{
   req.requestTime = Date.now()
-  console.log(`Date: ${req.requestTime}`);
 
   next();
 })
