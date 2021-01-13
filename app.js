@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+const catchAsync = require('./utilities/catchAsync');
+const ExpressError = require('./utilities/ExpressError');
 const ejsMate = require("ejs-mate");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -53,53 +55,59 @@ app.get("/yelpcamp", (req, res) => {
 });
 
 // show all campgrounds on homepage
-app.get("/yelpcamp/campgrounds", async (req, res) => {
+app.get("/yelpcamp/campgrounds", catchAsync(async (req, res) => {
   const allCamps = await Campground.find({});
   res.render("campgrounds/index", { allCamps });
-});
+}));
 
-// add campground form page
+// add campground form page 
 app.get("/yelpcamp/campgrounds/new", (req, res) => {
   res.render("campgrounds/new");
 });
 
 // ADD  campground to database route
-app.post("/yelpcamp/campgrounds", async (req, res) => {
+app.post("/yelpcamp/campgrounds", catchAsync(async (req, res) => {
   // console.log(`Date: ${req.requestTime}`);
 
   const campground = new Campground(req.body.campground);
   await campground.save();
   res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
-});
+}));
 
 // SHOW single campground page
-app.get("/yelpcamp/campgrounds/:id", async (req, res) => {
+app.get("/yelpcamp/campgrounds/:id", catchAsync(async (req, res) => {
   const campground = await Campground.findById(req.params.id);
   res.render("campgrounds/show", { campground });
-});
+}));
 
 // show edit page
-app.get("/yelpcamp/campgrounds/:id/edit", async (req, res) => {
+app.get("/yelpcamp/campgrounds/:id/edit", catchAsync(async (req, res) => {
   const campground = await Campground.findById(req.params.id);
   res.render("campgrounds/edit", { campground });
-});
+}));
 
 // UPDATE database with edits
-app.put("/yelpcamp/campgrounds/:id", async (req, res) => {
-  const { id } = req.params;
-  const campground = await Campground.findByIdAndUpdate(id, {
-    ...req.body.campground
-  });
-  res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
-});
+app.put("/yelpcamp/campgrounds/:id", catchAsync(async (req, res) => {
+
+    const { id } = req.params;
+    const campground = await Campground.findByIdAndUpdate(id, {
+      ...req.body.campground
+    });
+    res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
+
+}));
 
 // DELETE
-app.delete("/yelpcamp/campgrounds/:id", async (req, res) => {
+app.delete("/yelpcamp/campgrounds/:id", catchAsync(async (req, res) => {
   const { id } = req.params;
   await Campground.findByIdAndDelete(id);
   res.redirect("/yelpcamp/campgrounds");
-});
+}));
 
+
+
+// AUTH
+  // display pages
 app.get("/yelpcamp/login", (req, res) => {
   res.render("login");
 });
@@ -108,17 +116,33 @@ app.get("/yelpcamp/register", (req, res) => {
   res.render("register");
 });
 
+  // post routes
+app.post("/yelpcamp/login", catchAsync(async(req, res) => {
+  res.render("login");
+}));
+
+app.post("/yelpcamp/register", catchAsync(async(req, res) => {
+  res.render("register");
+}));
+
+
+
+
 // 404
-app.use((req, res, next) => {
-  res.status(404).render("404");
+app.all('*', (req, res, next) => {
+  next(new ExpressError("You got lost in the wilderness", 404))
 });
 
-app.use(function(err, req, res, next) {
-  console.log("*****ERROR*****");
-  console.log(err);
-  next(err);
-  next();
+app.use((err, req, res, next) => {
+  const {statusCode = 500, message = "Something went wrong" } = err
+  if (!err.message) err.message = "Oh no, It appears you have gotten lost. "
+  if (statusCode === 404){
+    res.status(statusCode).render("404");
+  } else {
+  res.status(statusCode).render('error', { err }) ;
+  }
 });
+
 
 app.listen(3000, () => {
   console.log("on port 3000");
