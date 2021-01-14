@@ -7,7 +7,7 @@ const User = require("./models/user");
 const flash = require("connect-flash");
 const { campgroundSchema } = require('./validationSchema');
 const ejsMate = require("ejs-mate");
-const Comment = require("./models/comment");
+const Review = require("./models/review");
 const mongoose = require("mongoose");
 
 const Campground = require("./models/campground");

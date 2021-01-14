@@ -15,10 +15,10 @@ var campgroundSchema = new Schema({
     },
     username: String
   },
-  comments: [
+  reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Comment"
+      ref: "Review"
     }
   ]
 });
