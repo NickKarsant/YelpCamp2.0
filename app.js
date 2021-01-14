@@ -5,7 +5,7 @@ const path = require("path");
 
 const User = require("./models/user");
 const flash = require("connect-flash");
-const { campgroundSchema } = require('./validationSchema');
+const { campgroundSchema, reviewsSchema } = require('./validationSchemas');
 const ejsMate = require("ejs-mate");
 const Review = require("./models/review");
 const mongoose = require("mongoose");
@@ -43,9 +43,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 
+// validation middleware
 const validateCampground = (req, res,next) => {
   const { error } = campgroundSchema.validate(req.body);
   if (error) {
+    const msg = error.details.map(el => el.message). join(',')
+    throw new ExpressError(msg, 400)
+  } else {
+    next();
+  }
+}
+const validateReview = (req, res,next) => {
+  const { error } = reviewsSchema.validate(req.body);
+  if (error) {
+    console.log(error)
     const msg = error.details.map(el => el.message). join(',')
     throw new ExpressError(msg, 400)
   } else {
@@ -149,6 +160,17 @@ app.post(
     res.render("register");
   })
 );
+
+// Review 
+app.post("/yelpcamp/campgrounds/:id/reviews", validateReview, catchAsync(async(req,res) =>{
+  const campground = await Campground.findById(req.params.id);
+  const review = new Review(req.body.review);
+  campground.reviews.push(review);
+  await review.save();
+  await campground.save();
+  res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
+}));
+
 
 // 404
 app.all("*", (req, res, next) => {

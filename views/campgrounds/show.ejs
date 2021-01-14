@@ -4,7 +4,7 @@
 
 <div class="top row">
   <div class="col-6 offset-3">
-    
+
     <div class="card">
       <img class="card-img-top" src="https://via.placeholder.com/400" alt="Card image cap">
       <div class="card-body">
@@ -17,7 +17,8 @@
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
       <div class="card-body">
-          <button class="btn btn-warning" onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>/edit">Edit</button>
+        <button class="btn btn-warning"
+          onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>/edit">Edit</button>
       </div>
     </div>
     <div class="card-footer text-muted">
@@ -25,20 +26,39 @@
     </div>
 
     <h2>Leave a Review</h2>
-    <form action="" class="mb-3">
+    <form action="/yelpcamp/campgrounds/<%= campground._id%>/reviews" method="POST"class="validated-form mb-3" novalidate> 
       <div class="mb-3">
         <label class="form-label" for="rating">Rating</label>
-        <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+        <input list="tickmarks" class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+        <datalist id="tickmarks">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist> 
       </div>
+
       <div class="mb-3">
         <label class="form-label" for="body">Review</label>
-        <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3"></textarea>
+        <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3" required></textarea>
+        <div class="valid-feedback">Looks good!</div>
 
       </div>
+
       <button class="btn btn-primary">Submit</button>
     </form>
 
-    
+    <div class="contianer mt-4">
+      <h2>Reviews</h2>
+      <div id="reviews-list">
+        
+        <%= campground.reviews%>
+
+      </div>
+    </div>
+
+
 
   </div>
 </div>
