@@ -103,10 +103,8 @@ app.post("/yelpcamp/campgrounds", validateCampground, catchAsync(async (req, res
 );
 
 // SHOW single campground page
-app.get(
-  "/yelpcamp/campgrounds/:id",
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
+app.get("/yelpcamp/campgrounds/:id", catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id).populate('reviews');
     res.render("campgrounds/show", { campground });
   })
 );
@@ -161,7 +159,7 @@ app.post(
   })
 );
 
-// Review 
+// Review Create
 app.post("/yelpcamp/campgrounds/:id/reviews", validateReview, catchAsync(async(req,res) =>{
   const campground = await Campground.findById(req.params.id);
   const review = new Review(req.body.review);
@@ -169,6 +167,14 @@ app.post("/yelpcamp/campgrounds/:id/reviews", validateReview, catchAsync(async(r
   await review.save();
   await campground.save();
   res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
+}));
+
+// Review Delete
+app.delete('/yelpcamp/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+  const { id, reviewId } = req.params;
+  await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+  await Review.findByIdAndDelete(reviewId);
+  res.redirect(`/yelpcamp/campgrounds/${id}`);
 }));
 
 
