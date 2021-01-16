@@ -1,21 +1,29 @@
 const express = require("express");
 const app = express();
+require('dotenv').config()
+
 const Joi = require("joi");
 const path = require("path");
-
 const User = require("./models/user");
 const flash = require("connect-flash");
-const { campgroundSchema, reviewsSchema } = require('./validationSchemas');
-const ejsMate = require("ejs-mate");
-const Review = require("./models/review");
-const mongoose = require("mongoose");
 
+const Review = require("./models/review");
+const ejsMate = require("ejs-mate");
+const session = require("express-session");
+
+const mongoose = require("mongoose");
 const Campground = require("./models/campground");
 const bodyParser = require("body-parser");
 const catchAsync = require("./utilities/catchAsync");
 
+const cookieParser = require("cookie-parser");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
+// const { campgroundSchema, reviewsSchema } = require('./validationSchemas');
+
+// routes
+const campgrounds = require('./routes/campgrounds');
+const reviews = require('./routes/reviews');
 
 mongoose
   .connect("mongodb://localhost:27017/yelpcamp", {
@@ -43,26 +51,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 
-// validation middleware
-const validateCampground = (req, res,next) => {
-  const { error } = campgroundSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(el => el.message). join(',')
-    throw new ExpressError(msg, 400)
-  } else {
-    next();
-  }
-}
-const validateReview = (req, res,next) => {
-  const { error } = reviewsSchema.validate(req.body);
-  if (error) {
-    console.log(error)
-    const msg = error.details.map(el => el.message). join(',')
-    throw new ExpressError(msg, 400)
-  } else {
-    next();
-  }
-}
+
+app.use("/yelpcamp/campgrounds", campgrounds)
+app.use("/yelpcamp/campgrounds/:id", reviews)
+
+
 
 
 
@@ -77,62 +70,6 @@ app.get("/yelpcamp", (req, res) => {
   res.render("landing");
 });
 
-// show all campgrounds on homepage
-app.get(
-  "/yelpcamp/campgrounds",
-  catchAsync(async (req, res) => {
-    const allCamps = await Campground.find({});
-    res.render("campgrounds/index", { allCamps });
-  })
-);
-
-// add campground form page
-app.get("/yelpcamp/campgrounds/new", (req, res) => {
-  res.render("campgrounds/new");
-});
-
-// ADD  campground to database route
-app.post("/yelpcamp/campgrounds", validateCampground, catchAsync(async (req, res) => {
-    // console.log(`Date: ${req.requestTime}`);
-
-
-    const campground = new Campground(req.body.campground);
-    await campground.save();
-    res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
-  })
-);
-
-// SHOW single campground page
-app.get("/yelpcamp/campgrounds/:id", catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate('reviews');
-    res.render("campgrounds/show", { campground });
-  })
-);
-
-// show edit page
-app.get("/yelpcamp/campgrounds/:id/edit", catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
-    res.render("campgrounds/edit", { campground });
-  })
-);
-
-// UPDATE database with edits
-app.put("/yelpcamp/campgrounds/:id", validateCampground, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const campground = await Campground.findByIdAndUpdate(id, {
-      ...req.body.campground
-    });
-    res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
-  })
-);
-
-// DELETE
-app.delete("/yelpcamp/campgrounds/:id", catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await Campground.findByIdAndDelete(id);
-    res.redirect("/yelpcamp/campgrounds");
-  })
-);
 
 // AUTH
 // display pages
@@ -145,9 +82,7 @@ app.get("/yelpcamp/register", (req, res) => {
 });
 
 // post routes
-app.post(
-  "/yelpcamp/login",
-  catchAsync(async (req, res) => {
+app.post("/yelpcamp/login", catchAsync(async (req, res) => {
     res.render("login");
   })
 );
@@ -158,24 +93,6 @@ app.post(
     res.render("register");
   })
 );
-
-// Review Create
-app.post("/yelpcamp/campgrounds/:id/reviews", validateReview, catchAsync(async(req,res) =>{
-  const campground = await Campground.findById(req.params.id);
-  const review = new Review(req.body.review);
-  campground.reviews.push(review);
-  await review.save();
-  await campground.save();
-  res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
-}));
-
-// Review Delete
-app.delete('/yelpcamp/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
-  const { id, reviewId } = req.params;
-  await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-  await Review.findByIdAndDelete(reviewId);
-  res.redirect(`/yelpcamp/campgrounds/${id}`);
-}));
 
 
 // 404
