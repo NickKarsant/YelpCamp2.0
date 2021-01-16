@@ -7,14 +7,11 @@ const path = require("path");
 const User = require("./models/user");
 const flash = require("connect-flash");
 
-const Review = require("./models/review");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 
 const mongoose = require("mongoose");
-const Campground = require("./models/campground");
 const bodyParser = require("body-parser");
-const catchAsync = require("./utilities/catchAsync");
 
 const cookieParser = require("cookie-parser");
 const ExpressError = require("./utilities/ExpressError");
@@ -53,7 +50,7 @@ app.use(methodOverride("_method"));
 
 
 app.use("/yelpcamp/campgrounds", campgrounds)
-app.use("/yelpcamp/campgrounds/:id", reviews)
+app.use("/yelpcamp/campgrounds/:id/reviews", reviews)
 
 
 
@@ -82,17 +79,17 @@ app.get("/yelpcamp/register", (req, res) => {
 });
 
 // post routes
-app.post("/yelpcamp/login", catchAsync(async (req, res) => {
-    res.render("login");
-  })
-);
+// app.post("/yelpcamp/login", catchAsync(async (req, res) => {
+//     res.render("login");
+//   })
+// );
 
-app.post(
-  "/yelpcamp/register",
-  catchAsync(async (req, res) => {
-    res.render("register");
-  })
-);
+// app.post(
+//   "/yelpcamp/register",
+//   catchAsync(async (req, res) => {
+//     res.render("register");
+//   })
+// );
 
 
 // 404
