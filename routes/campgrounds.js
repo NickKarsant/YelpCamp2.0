@@ -28,17 +28,18 @@ router.get(
 );
 
 // add campground form page
-router.get("/campgrounds/new", (req, res) => {
+router.get("/new", (req, res) => {
   res.render("campgrounds/new");
 });
 
 // ADD  campground to database route
 router.post("/", validateCampground, catchAsync(async (req, res) => {
     // console.log(`Date: ${req.requestTime}`);
-
-
+    
     const campground = new Campground(req.body.campground);
     await campground.save();
+    req.flash('success', "New campground saved");
+    req.flash('error', "Campgound was not saved");
     res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
   })
 );
@@ -46,6 +47,10 @@ router.post("/", validateCampground, catchAsync(async (req, res) => {
 // SHOW single campground page
 router.get("/:id", catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id).populate('reviews');
+    if (!campground){
+      req.flash('error', "Campground not found");
+      return res.redirect('/yelpcamp/campgrounds');
+    }
     res.render("campgrounds/show", { campground });
   })
 );
@@ -53,6 +58,10 @@ router.get("/:id", catchAsync(async (req, res) => {
 // show edit page
 router.get("/:id/edit", catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
+    if (!campground){
+      req.flash('error', "Campground not found");
+      return res.redirect('/yelpcamp/campgrounds');
+    }
     res.render("campgrounds/edit", { campground });
   })
 );
@@ -63,6 +72,11 @@ router.put("/:id", validateCampground, catchAsync(async (req, res) => {
     const campground = await Campground.findByIdAndUpdate(id, {
       ...req.body.campground
     });
+    if (!campground){
+      req.flash('error', "Campground not found");
+      return res.redirect('/yelpcamp/campgrounds');
+    }
+    req.flash('success', "Campground updated successfully");
     res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
   })
 );
@@ -71,6 +85,7 @@ router.put("/:id", validateCampground, catchAsync(async (req, res) => {
 router.delete("/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
+    req.flash('success', "Campground successfully deleted");
     res.redirect("/yelpcamp/campgrounds");
   })
 );
