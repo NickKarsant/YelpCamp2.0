@@ -14,16 +14,21 @@
         <li class="list-group-item"><%= campground.location%></li>
         <li class="list-group-item">$<%=campground.price%> night</li>
       </ul>
+      <% if (currentUser) {%>
       <form action="">
         <div class="list-group-item">Add pictures:
           <input type="text" placeholder="Image URL">
           <button class="btn btn-sm btn-primary">Add</button>
         </div>
       </form>
+      <%}%>
+
+      <% if (currentUser && campground.author.equals(currentUser.id))  {%>
       <div class="card-body">
         <button class="btn btn-warning"
           onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>/edit">Edit</button>
       </div>
+      <%}%>
     </div>
     <div class="card-footer text-muted">
       Added 10 days ago
@@ -31,57 +36,59 @@
   </div>
 
   <div class="col-6">
-
-    <h2>Leave a Review</h2>
-    <form action="/yelpcamp/campgrounds/<%= campground._id%>/reviews" method="POST" class="validated-form mb-3"
-      novalidate>
-      <div class="mb-3">
-        <label class="form-label" for="rating">Rating</label>
-        <input list="tickmarks" class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-        <datalist id="tickmarks">
-          <option value="1" label="1"></option>
-          <option value="2" label="2"></option>
-          <option value="3" label="3"></option>
-          <option value="4" label="4"></option>
-          <option value="5" label="5"></option>
-        </datalist>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="body">Review</label>
-        <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3" required></textarea>
-        <div class="valid-feedback">Looks good!</div>
-
-      </div>
-
-      <button class="btn btn-primary">Submit</button>
-    </form>
-
-    <div class="contianer mt-4">
-      <h2>Reviews</h2>
-      <div id="reviews-list">
-        <% for(let review of campground.reviews) {%>
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title">Rating: <%=review.rating %></h5>
-            <p class="card-text"><%=review.body%></p>
-            <form class="validated-form"
-              action="/yelpcamp/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </form>
-          </div>
+    <% if (currentUser) {%>
+      <h2>Leave a Review</h2>
+      <form action="/yelpcamp/campgrounds/<%= campground._id%>/reviews" method="POST" class="validated-form mb-3"
+        novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="rating">Rating</label>
+          <input list="tickmarks" class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+          <datalist id="tickmarks">
+            <option value="1" label="1"></option>
+            <option value="2" label="2"></option>
+            <option value="3" label="3"></option>
+            <option value="4" label="4"></option>
+            <option value="5" label="5"></option>
+          </datalist>
         </div>
 
+        <div class="mb-3">
+          <label class="form-label" for="body">Review</label>
+          <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3" required></textarea>
+          <div class="valid-feedback">Looks good!</div>
 
-        <%}%> 
+        </div>
+
+        <button class="btn btn-primary">Submit</button>
+      </form>
+    <%}%>
+      <div class="contianer mt-4">
+        <h2>Reviews</h2>
+        <div id="reviews-list">
+          <% for(let review of campground.reviews) {%>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Rating: <%=review.rating %></h5>
+              <p class="card-text"><%=review.body%></p>
+              <p class="text-muted">Written by: <%=review.author.username %></p>
+              <% if (review.author.equals(currentUser)) {%>
+              <form class="validated-form"
+                action="/yelpcamp/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </form>
+              <%}%>
+            </div>
+          </div>
+
+
+          <%}%> 
+        </div>
       </div>
+
+
     </div>
-
-
-
   </div>
-</div>
 
 
 
-<button class="btn btn-lg btn-success" onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
+      <button class="btn btn-lg btn-success" onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
