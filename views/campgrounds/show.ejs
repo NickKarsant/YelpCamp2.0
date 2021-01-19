@@ -6,11 +6,12 @@
     <div class="card">
       <img class="card-img-top" src="https://via.placeholder.com/400" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title"><%= campground.title%></h5>
+        <h3 class="card-title"><%= campground.title%></h3>
         <p class="card-text"><%=campground.description%></p>
+        <p class="text-muted">Submitted by <%= campground.author.username %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item tetx-muted"><%= campground.location%></li>
+        <li class="list-group-item"><%= campground.location%></li>
         <li class="list-group-item">$<%=campground.price%> night</li>
       </ul>
       <form action="">

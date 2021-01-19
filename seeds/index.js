@@ -23,11 +23,14 @@ const seedDB = async () => {
   for (let i=0; i<50; i++){
     const random1000 = Math.floor(Math.random() * 1000);
     const random500 = Math.floor(Math.random() * 500);
-    const camp = new Campground({
+    const camp = await new Campground({
+      author: "6007498d1cebd3ef0b1c39a2",
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price:`${random500}`,
-      image: "https://via.placeholder.com/150",
+      thumbnail: "https://via.placeholder.com/150",
+      images: [],
+      reviews: [],
       description: "Für Netting-Sets, die entwedertens zwei die von der Bank (nach vollständiger Anwendung aller anderen vorgenannten regulatorischen Anpassungen), muss der Betrag, der vom Ergänzungskapital abzuziehen ist, als die Summe sämtlicher Positionen, die insgesamt mehr als 10% des harten Kernkapitals am gesamten Eigenkapital. Derartige zum Ausgleich herangezogene Vermögenswerte sollten mit dem Risikogewicht versehen wiert werden."
     })
     await camp.save();
