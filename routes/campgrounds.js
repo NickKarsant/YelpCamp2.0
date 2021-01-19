@@ -4,7 +4,7 @@ const ExpressError = require("../utilities/ExpressError");
 const catchAsync = require("../utilities/catchAsync");
 const Campground = require("../models/campground");
 const { campgroundSchema } = require('../validationSchemas');
-
+const { isLoggedIn } = require('../utilities/middleware');
 
 // validation middleware
 const validateCampground = (req, res,next) => {
@@ -28,12 +28,12 @@ router.get(
 );
 
 // add campground form page
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("campgrounds/new");
 });
 
 // ADD  campground to database route
-router.post("/", validateCampground, catchAsync(async (req, res) => {
+router.post("/", isLoggedIn, validateCampground, catchAsync(async (req, res) => {
     // console.log(`Date: ${req.requestTime}`);
     
     const campground = new Campground(req.body.campground);
@@ -56,7 +56,7 @@ router.get("/:id", catchAsync(async (req, res) => {
 );
 
 // show edit page
-router.get("/:id/edit", catchAsync(async (req, res) => {
+router.get("/:id/edit", isLoggedIn,  catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     if (!campground){
       req.flash('error', "Campground not found");
@@ -67,7 +67,7 @@ router.get("/:id/edit", catchAsync(async (req, res) => {
 );
 
 // UPDATE database with edits
-router.put("/:id", validateCampground, catchAsync(async (req, res) => {
+router.put("/:id", isLoggedIn, validateCampground, catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, {
       ...req.body.campground

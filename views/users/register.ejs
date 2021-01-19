@@ -4,14 +4,20 @@
 
     <h1>Register</h1>
 
-    <form action="">
+    <form action="/yelpcamp/auth/register" method="POST" class="validated-form" novalidate>
+
+
 
       <div class="form-group">
-        <input class="form-control" type="text" placeholder="Username" name="username">
+        <input class="form-control" type="text" placeholder="Username" name="username" required>
       </div>
 
       <div class="form-group">
-        <input class="form-control" type="password" placeholder="Password" name="password">
+        <input class="form-control" type="text" placeholder="Email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="Password" name="password" required>
       </div>
 
       <div class="ui one column stackable center aligned page grid">
@@ -25,4 +31,4 @@
   </div>
 </div>
 
-<button onclick=window.location.href="/yelpcamp/campgrounds">Homepage</button>
+<button class="btn btn-lrg btn-success" onclick=window.location.href="/yelpcamp/campgrounds">Homepage</button>

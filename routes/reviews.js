@@ -5,6 +5,7 @@ const catchAsync = require("../utilities/catchAsync");
 const Campground = require("../models/campground");
 const Review = require("../models/review");
 const { reviewsSchema } = require("../validationSchemas");
+const { isLoggedIn } = require("../utilities/middleware");
 
 const validateReview = (req, res, next) => {
   const { error } = reviewsSchema.validate(req.body);
@@ -28,7 +29,7 @@ router.post(
     campground.reviews.push(review);
     await review.save();
     await campground.save();
-    req.flash('success', "Created new review");
+    req.flash("success", "Created new review");
     res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
   })
 );
@@ -36,11 +37,12 @@ router.post(
 // Review Delete
 router.delete(
   "/:reviewId",
+  isLoggedIn,
   catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
-    req.flash('success', "Review successfully deleted");
+    req.flash("success", "Review successfully deleted");
     res.redirect(`/yelpcamp/campgrounds/${id}`);
   })
 );

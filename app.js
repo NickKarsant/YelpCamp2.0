@@ -13,15 +13,22 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+const passport = require("passport")
+const LocalStrategy = require("passport-local");
+const catchAsync = require("./utilities/catchAsync");
+
+
 const cookieParser = require("cookie-parser");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
-// const { campgroundSchema, reviewsSchema } = require('./validationSchemas');
 
 // routes
 const campgrounds = require('./routes/campgrounds');
 const reviews = require('./routes/reviews');
+const auth = require('./routes/auth');
 
+
+// database connection
 mongoose
   .connect("mongodb://localhost:27017/yelpcamp", {
     useUnifiedTopology: true,
@@ -68,13 +75,22 @@ app.use((req,res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
-})
+});
 
+app.use(passport.initialize());
+// has to come AFTER "app.use(session(sessionconfig)"
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+// route files
 app.use("/yelpcamp/campgrounds", campgrounds)
 app.use("/yelpcamp/campgrounds/:id/reviews", reviews)
-
-
-
+app.use("/yelpcamp/auth", auth)
 
 
 
@@ -89,34 +105,12 @@ app.get("/yelpcamp", (req, res) => {
 });
 
 
-// AUTH
-// display pages
-app.get("/yelpcamp/login", (req, res) => {
-  res.render("login");
-});
-
-app.get("/yelpcamp/register", (req, res) => {
-  res.render("register");
-});
-
-// post routes
-// app.post("/yelpcamp/login", catchAsync(async (req, res) => {
-//     res.render("login");
-//   })
-// );
-
-// app.post(
-//   "/yelpcamp/register",
-//   catchAsync(async (req, res) => {
-//     res.render("register");
-//   })
-// );
 
 
 // 404
-app.all("*", (req, res, next) => {
-  next(new ExpressError("You got lost in the wilderness", 404));
-});
+// app.all("*", (req, res, next) => {
+//   next(new ExpressError("You got lost in the wilderness", 404));
+// });
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message = "Something went wrong" } = err;
