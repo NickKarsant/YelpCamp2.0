@@ -16,7 +16,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureFlash: true,
-    failureRedirect: "/yelpcampÎ/auth/login"
+    failureRedirect: "/yelpcamp/auth/login"
   }),
   usersController.login
 );
