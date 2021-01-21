@@ -4,7 +4,10 @@
   <div class="col-6">
 
     <div class="card">
-      <img class="card-img-top" src="https://via.placeholder.com/400" alt="Card image cap">
+      <% for (let image of campground.images) {%>
+        <img class="card-img-top" src="<%=image.url%>" alt="Card image cap">
+        
+      <%}%>
       <div class="card-body">
         <h3 class="card-title"><%= campground.title%></h3>
         <p class="card-text"><%=campground.description%></p>
@@ -15,10 +18,11 @@
         <li class="list-group-item">$<%=campground.price%> night</li>
       </ul>
       <% if (currentUser) {%>
-      <form action="">
+        <form action="/yelpcamp/campgrounds" method="POST" novalidate class="validated-form">
         <div class="list-group-item">
-          <label>Add pictures:</label>
+          <label><button type="submit" class="btn btn-sm btn-primary">Add</button> pictures:</label>
           <input type="file" name="image" required>
+          
         </div>
       </form>
       <%}%>
