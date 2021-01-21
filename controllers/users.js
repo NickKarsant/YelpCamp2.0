@@ -32,6 +32,7 @@ module.exports.register = async (req, res) => {
 };
 
 module.exports.logout = (req, res) => {
+  // res.redirect("/yelpcamp/campgrounds");
   req.logout();
   req.flash("success", "Successfully logged out.");
   res.redirect("/yelpcamp/campgrounds");

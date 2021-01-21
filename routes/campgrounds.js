@@ -1,11 +1,16 @@
 const express = require("express");
-const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
+
+const router = express.Router();
 const {
   isLoggedIn,
   isCampAuthor,
   validateCampground
 } = require("../utilities/middleware");
+
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
 const campController = require("../controllers/campgrounds");
 
@@ -16,7 +21,13 @@ router.get("/", catchAsync(campController.index));
 router.get("/new", isLoggedIn, campController.renderAddForm);
 
 // ADD  campground to database route
-router.post("/", isLoggedIn, validateCampground, catchAsync(campController.add));
+// router.post("/", isLoggedIn, validateCampground, catchAsync(campController.add));
+router.post("/", upload.array("image"), (req, res) => {
+  console.log(req.body)
+  console.log(req.file)
+  console.log(req.files)
+  res.send(req.image)
+});
 
 // SHOW single campground page
 router.get("/:id", catchAsync(campController.showCamp));
