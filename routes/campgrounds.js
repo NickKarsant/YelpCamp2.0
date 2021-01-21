@@ -1,55 +1,30 @@
-const express = require("express");
-const catchAsync = require("../utilities/catchAsync");
-
+const express = require('express');
 const router = express.Router();
-const {
-  isLoggedIn,
-  isCampAuthor,
-  validateCampground
-} = require("../utilities/middleware");
-
+const campgrounds = require('../controllers/campgrounds');
+const catchAsync = require('../utils/catchAsync');
+const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 const multer = require('multer');
 // const { storage } = require('../cloudinary');
 const upload = multer({ dest: 'uploads/' });
 
-const campController = require("../controllers/campgrounds");
+const Campground = require('../models/campground');
 
-// show all campgrounds on homepage
-router.get("/", catchAsync(campController.index));
+router.route('/')
+    .get(catchAsync(campgrounds.index))
+    // .post(isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground))
+    .post(upload.single('image'), (req, res) => {
+        console.log(req.file);
+    })
 
-// add campground form page
-router.get("/new", isLoggedIn, campController.renderAddForm);
+router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
-// ADD  campground to database route
-// router.post("/", isLoggedIn, validateCampground, catchAsync(campController.add));
-router.post("/", upload.array("image"), (req, res) => {
-  console.log(req.body)
-  console.log(req.file)
-  console.log(req.files)
-  res.send(req.image)
-});
+router.route('/:id')
+    .get(catchAsync(campgrounds.showCampground))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampground))
+    .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
-// SHOW single campground page
-router.get("/:id", catchAsync(campController.showCamp));
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
 
-// show edit page
-router.get(
-  "/:id/edit",
-  isLoggedIn,
-  isCampAuthor,
-  catchAsync(campController.showEdit)
-);
 
-// UPDATE database with edits
-router.put(
-  "/:id",
-  isLoggedIn,
-  isCampAuthor,
-  validateCampground,
-  catchAsync(campController.update)
-);
-
-// DELETE
-router.delete("/:id", isCampAuthor, catchAsync(campController.delete));
 
 module.exports = router;
