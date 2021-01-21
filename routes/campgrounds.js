@@ -9,8 +9,8 @@ const {
 } = require("../utilities/middleware");
 
 const multer = require('multer');
-const { storage } = require('../cloudinary');
-const upload = multer({ storage });
+// const { storage } = require('../cloudinary');
+const upload = multer({ dest: 'uploads/' });
 
 const campController = require("../controllers/campgrounds");
 
