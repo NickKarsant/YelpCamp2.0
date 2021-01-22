@@ -46,6 +46,23 @@ nav{
 } */
 
 
+/* index camps grid */
+.thumbnail img{
+  width: 200px;
+  height: 200px;
+}
+#camps{
+  width:50% !important;
+  padding: 0 !important; 
+}
+
+
+/* new campgroundform */
+#add-image{
+  padding-bottom: 2.3em;
+}
+
+
 
 /* SHOW PAGES */
 #map img {
