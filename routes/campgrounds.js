@@ -18,20 +18,11 @@ router.route('/')
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
 
-// router.post('/yelpcamp/campgrounds/:id',  upload.array('image'),  catchAsync(campgrounds.editImages));
-router.post('/yelpcamp/campgrounds/upload', isLoggedIn,  upload.array('image'),  async(req,res) => {
-    console.dir(req.files)
-    const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
-    console.log(campground);
-    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
-    campground.images.push(...imgs)
-});
-
     
 
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground))
-    .put(isLoggedIn, isAuthor, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampground))
+    .put(isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampground))
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 

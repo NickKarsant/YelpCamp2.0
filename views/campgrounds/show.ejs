@@ -37,12 +37,12 @@
         <li class="list-group-item">$<%=campground.price%> night</li>
       </ul>
       <% if (currentUser) {%>
-      <form action="/yelpcamp/campgrounds/upload" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+      <!-- <form action="/yelpcamp/campgrounds/<%=campground._id%>/upload?_method=PUT" method="POST" enctype="multipart/form-data"> -->
         <div class="list-group-item">
           <label><button type="submit" class="btn btn-sm btn-primary">Add Images: </button></label>
           <input type="file" name="image" required>
         </div>
-      </form>
+      <!-- </form> -->
       <%}%>
 
       <% if (currentUser && campground.author.equals(currentUser.id))  {%>
@@ -128,4 +128,4 @@
 
 
 
-    <button class="btn btn-lg btn-success" onclick=window.location.href="/yelpcamp/campgrounds">Go Back</button>
+    <a href='/yelpcamp/campgrounds'> <button class="btn btn-lg btn-success">Go Back</button></a>

@@ -27,8 +27,9 @@
             <h5 class="card-title"> <%= campground.title %> </h5>
           </div>
           <p class="more">
-            <button id="more" class="btn btn-primary"
-              onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>">More Info</button>
+    
+              <a class="button" href="/yelpcamp/campgrounds/<%= campground._id %>"><button class="btn btn-primary"> More Info</button></a>
+
           </p>
         </div>
       </div>

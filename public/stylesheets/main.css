@@ -67,7 +67,18 @@ nav{
   height: 50%;
 }
 
-
+a:hover{
+  color: white;
+}
+a.more{
+  border: 1px solid red;
+}
+a:visited{
+  color: white;
+}
+a{
+  color: white;
+}
 
 
 /* SHOW PAGES */
