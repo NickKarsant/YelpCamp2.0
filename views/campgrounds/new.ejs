@@ -8,11 +8,13 @@
         <div class="mb-3">
           <input class="form-control" type="text" placeholder="Title" name="campground[title]" required>
           <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please include the campsite name</div>
         </div>
 
         <div class="mb-3">
           <input class="form-control" type="text" placeholder="City and State" name="campground[location]" required>
           <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Where is it located?</div>
         </div>
 
         <div class="input-group mb-3">
@@ -21,21 +23,24 @@
           </div>
           <input type="text" name="campground[price]" class="form-control" aria-label="Amount (to the nearest dollar)"
             required>
-          <div class="valid-feedback">Looks good!</div>
-          <div class="input-group-append">
             <span class="input-group-text">.00</span>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Can you at least estimate a price?</div>
+          <div class="input-group-append">
           </div>
         </div>
 
         <div class="mb-3">
           <textarea class="form-control" type="text" placeholder="Description" id="description"
             name="campground[description]" required></textarea>
-          <div class="valid-feedback">Looks good!</div>
+          <div class="valid-feedback">Looks good</div>
+          <div class="invalid-feedback">Mind telling us a little something about this campsite?</div>
         </div>
 
         <div class="mb-3">
           <input id="add-image" class="form-control" type="file" name="image" multiple required>
-          <div class="valid-feedback">Looks good!</div>
+          <div class="valid-feedback">Fantastic!</div>
+          <div class="invalid-feedback">Please include at least one picture</div>
         </div>
 
         <div class="ui one column stackable center aligned page grid">

@@ -5,7 +5,7 @@
 
     <div class="card">
 
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div id="carouselExampleControls" class="carousel slide" >
         <div class="carousel-inner">
           <% campground.images.forEach((image, index) => {%>
           <div class="carousel-item <%= index === 0 ? 'active' : ''%>">
@@ -37,11 +37,10 @@
         <li class="list-group-item">$<%=campground.price%> night</li>
       </ul>
       <% if (currentUser) {%>
-      <form action="/yelpcamp/campgrounds" method="POST" novalidate class="validated-form">
+      <form action="/yelpcamp/campgrounds/upload" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
         <div class="list-group-item">
-          <label><button type="submit" class="btn btn-sm btn-primary">Add pictures: </button></label>
+          <label><button type="submit" class="btn btn-sm btn-primary">Add Images: </button></label>
           <input type="file" name="image" required>
-
         </div>
       </form>
       <%}%>

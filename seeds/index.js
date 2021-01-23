@@ -42,18 +42,6 @@ const seedDB = async () => {
         {
           url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg',
           filename: 'YelpCamp/velziw8u4he0hheuzr54'
-        },
-        {
-          url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/wfcbpfvovlseu1be1qvf.jpg',
-          filename: 'YelpCamp/wfcbpfvovlseu1be1qvf'
-        },
-        {
-          url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345710/YelpCamp/eb2xlpuqnzfq0ewvvao0.jpg',
-          filename: 'YelpCamp/eb2xlpuqnzfq0ewvvao0'
-        },
-        {
-          url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345710/YelpCamp/al4yuuzfcydvury9x9uj.jpg',
-          filename: 'YelpCamp/al4yuuzfcydvury9x9uj'
         }
       ],
       reviews: [],

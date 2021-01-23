@@ -68,3 +68,12 @@ module.exports.deleteCampground = async (req, res) => {
     req.flash('success', 'Successfully deleted campground')
     res.redirect('/yelpcamp/campgrounds');
 }
+
+
+module.exports.editImages = async (req, res) => {
+    console.dir(req.files);
+    const campground = req.body.campground;
+    console.log(campground);
+    // const addedImages = req.files.map(file => ({url: file.path, filename: file.filename }))
+    // campground.images.push(addedImages)
+}

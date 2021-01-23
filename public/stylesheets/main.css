@@ -62,6 +62,12 @@ nav{
   padding-bottom: 2.3em;
 }
 
+#image {
+  padding: 0;
+  height: 50%;
+}
+
+
 
 
 /* SHOW PAGES */

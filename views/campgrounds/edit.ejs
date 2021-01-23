@@ -3,8 +3,8 @@
   <div class="column twelve wide">
     <h1 class="text-center">Edit Campground</h1>
     <div class="col-10 offset-1">
-      <form action="/yelpcamp/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated-form"
-        enctype="multipart/form-data">
+      <form action="/yelpcamp/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate
+        class="validated-form" enctype="multipart/form-data">
         <div class="mb-3">
           <label class="form-label" for="title">Title</label>
           <input class="form-control" type="text" id="title" name="campground[title]" value="<%=campground.title %>"
@@ -12,6 +12,8 @@
           <div class="valid-feedback">
             Looks good!
           </div>
+          <div class="invalid-feedback">Please include the campsite name</div>
+
         </div>
         <div class="mb-3">
           <label class="form-label" for="location">Location</label>
@@ -20,6 +22,8 @@
           <div class="valid-feedback">
             Looks good!
           </div>
+          <div class="invalid-feedback">Where is it located?</div>
+
         </div>
 
         <div class="mb-3">
@@ -27,10 +31,13 @@
           <div class="input-group">
             <span class="input-group-text" id="price-label">$</span>
             <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-              aria-describedby="price-label" name="campground[price]" value="<%=campground.price %>" required><div
-              class="valid-feedback">
+              aria-describedby="price-label" name="campground[price]" value="<%=campground.price %>" required>
+            <div class="valid-feedback">
               Looks good!
             </div>
+            <div class="invalid-feedback">Can you at least estimate a price?</div>
+
+
           </div>
         </div>
 
@@ -41,6 +48,8 @@
           <div class="valid-feedback">
             Looks good!
           </div>
+          <div class="invalid-feedback">Mind telling us a little something about this campsite?</div>
+
         </div>
         <div class="mb-3">
           <div class="form-file custom-file">
@@ -65,8 +74,8 @@
           <button class="btn btn-primary">Update Campground</button>
         </div>
       </form>
-      
+
     </div>
   </div>
 </div>
-<button class="btn btn-success"><a href="/campgrounds/<%= campground._id%>">Back To Campground</a></button> 
+<button class="btn btn-success"><a href="/yelpcamp/campgrounds/<%= campground._id%>">Back To Campground</a></button>
