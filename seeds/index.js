@@ -29,19 +29,19 @@ const seedDB = async () => {
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price: `${random500}`,
-      thumbnail: "images[randomIndex].url",
+      geolocation: { type: "Point", coordinates: [-119.58823, 36.427765] },
       images: [
         {
-          url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg',
-          filename: 'YelpCamp/caxxgz6qyr56rjzebdpw'
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg",
+          filename: "YelpCamp/caxxgz6qyr56rjzebdpw"
         },
         {
-          url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg',
-          filename: 'YelpCamp/ov0jecbwlno73ftneled'
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg",
+          filename: "YelpCamp/ov0jecbwlno73ftneled"
         },
         {
-          url: 'https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg',
-          filename: 'YelpCamp/velziw8u4he0hheuzr54'
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
+          filename: "YelpCamp/velziw8u4he0hheuzr54"
         }
       ],
       reviews: [],
@@ -55,6 +55,3 @@ const seedDB = async () => {
 seedDB().then(() => {
   mongoose.connection.close();
 });
-
-
-

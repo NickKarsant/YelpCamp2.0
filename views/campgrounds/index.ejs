@@ -20,24 +20,29 @@
 
       <div class="thumbnail">
         <div class="preview">
+          <% if (campground.images.length) {%>
           <img class="card-fluid" src="<%=campground.images[0].url%>" alt="">
+          <% } else {%>
+          <img class="card-fluid" src="https://via.placeholder.com/200" alt="">
+          <%}%>
         </div>
         <div class="card-body">
           <div class="caption">
             <h5 class="card-title"> <%= campground.title %> </h5>
-          </div>
-          <p class="more">
-    
-              <a class="button" href="/yelpcamp/campgrounds/<%= campground._id %>"><button class="btn btn-primary"> More Info</button></a>
-
-          </p>
         </div>
-      </div>
+        <p class="more">
 
+          <a class="button" href="/yelpcamp/campgrounds/<%= campground._id %>"><button class="btn btn-primary"> More
+              Info</button></a>
+
+        </p>
+      </div>
     </div>
 
+  </div>
 
-    <%}%> 
+
+  <%}%> 
   </div>
 
 </div>

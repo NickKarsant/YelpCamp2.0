@@ -145,25 +145,27 @@
 
 <a href='/yelpcamp/campgrounds'> <button class="btn btn-lg btn-success">Go Back</button></a>
 
-<!-- <script type="text/javascript" src="/javascript/showPageMap.js"></script> -->
 
 <script>
-    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const campground = <%- JSON.stringify(campground)%>;
-  </script>
-  
+  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+  const campground = <%- JSON.stringify(campground) %>;
+</script>
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibmthcnNhbnQiLCJhIjoiY2trYWU4MmRuMDFwczJ2cG85dDVpODBsYyJ9.LewafKgB3ImEAV3CK841wg';
 
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+    style: 'mapbox://styles/mapbox/dark-v10', // stylesheet location
     center: campground.geolocation.coordinates, // starting position [lng, lat]
     zoom: 9 // starting zoom
   });
 
+
+
   var marker = new mapboxgl.Marker()
     .setLngLat(campground.geolocation.coordinates)
     .addTo(map); // add the marker to the map
+
 
 </script>
