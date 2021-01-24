@@ -88,6 +88,16 @@ a{
 
 } */
 
+.geo {
+  /* border: 1px solid red; */
+  padding: 0 !important;
+} 
+.lon{
+  margin-left: 3% !important;
+}
+.lat{
+  margin-left: 6% !important;
+}
 .inner {
   float: left;
   padding: 5px;
