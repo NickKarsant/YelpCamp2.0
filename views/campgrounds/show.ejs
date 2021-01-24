@@ -1,9 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/stars.css">
 
-<script>
-  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-</script>
 
 
 <div class="top row mt-3">
@@ -66,7 +63,7 @@
 
 
   <div class="col-md-6">
-      <div id='map' style='width: 400px; height: 400px;'></div>
+      <div id='map' style='width: 450px; height: 450px;'></div>
       
   </div>
     
@@ -81,7 +78,7 @@
         <div class="mb-3">
           <label class="form-label" for="rating">Rating</label>
           <fieldset class="starability-basic">
-            <input type="radio" id="no-rate"   class="input-no-rate" novalidate name="review[rating]" value="0" checked
+            <input type="radio" id="no-rate" class="input-no-rate" novalidate name="review[rating]" value="0" checked
               aria-label="No rating." required />
             <input type="radio" id="first-rate1" name="review[rating]" value="1" />
             <label for="first-rate1" title="Terrible">1 star</label>
@@ -151,11 +148,22 @@
 <!-- <script type="text/javascript" src="/javascript/showPageMap.js"></script> -->
 
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmthcnNhbnQiLCJhIjoiY2trYWU4MmRuMDFwczJ2cG85dDVpODBsYyJ9.LewafKgB3ImEAV3CK841wg';
-    var map = new mapboxgl.Map({
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const campground = <%- JSON.stringify(campground)%>;
+  </script>
+  
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibmthcnNhbnQiLCJhIjoiY2trYWU4MmRuMDFwczJ2cG85dDVpODBsYyJ9.LewafKgB3ImEAV3CK841wg';
+
+  var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    center: [-74.5, 40], // starting position [lng, lat]
+    center: campground.geolocation.coordinates, // starting position [lng, lat]
     zoom: 9 // starting zoom
-    });
-    </script>
+  });
+
+  var marker = new mapboxgl.Marker()
+    .setLngLat(campground.geolocation.coordinates)
+    .addTo(map); // add the marker to the map
+
+</script>
