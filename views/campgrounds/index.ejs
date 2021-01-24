@@ -12,6 +12,12 @@
   </header>
 </div>
 
+<div id="map" class="mb-5">
+
+
+
+</div>
+
 <div id="card-list" class="ui container">
 
   <div class="ui grid mb-3">
@@ -46,7 +52,8 @@
   </div>
 
 </div>
+<script>
+  const mapToken = '<%=process.env.MAPBOX_TOKEN%>';
+</script>
 
-
-
-  
+<script src="/javascript/clusterMap.js"></script>

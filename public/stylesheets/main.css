@@ -88,16 +88,29 @@ a{
 
 } */
 
+#map{
+  width: 100%;
+  height: 500px;
+}
+
+a.nav-item:hover{
+  color: white;
+}
+
 .geo {
   /* border: 1px solid red; */
   padding: 0 !important;
 } 
 .lon{
-  margin-left: 3% !important;
+  margin-left: 6% !important;
 }
 .lat{
   margin-left: 6% !important;
 }
+.ele{
+  width: 110% !important;
+}
+
 .inner {
   float: left;
   padding: 5px;
