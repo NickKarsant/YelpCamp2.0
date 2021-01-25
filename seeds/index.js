@@ -29,8 +29,12 @@ const seedDB = async () => {
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price: `${random500}`,
-      geolocation: { type: "Point", coordinates: [cities[random1000].longitude, cities[random1000].latitude]  },
+      geometry: { type: "Point", coordinates: [cities[random1000].longitude, cities[random1000].latitude]  },
       images: [
+        {
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
+          filename: "YelpCamp/velziw8u4he0hheuzr54"
+        },
         {
           url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg",
           filename: "YelpCamp/caxxgz6qyr56rjzebdpw"
@@ -38,10 +42,6 @@ const seedDB = async () => {
         {
           url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg",
           filename: "YelpCamp/ov0jecbwlno73ftneled"
-        },
-        {
-          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
-          filename: "YelpCamp/velziw8u4he0hheuzr54"
         }
       ],
       reviews: [],

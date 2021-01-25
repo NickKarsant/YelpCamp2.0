@@ -3,17 +3,17 @@ mapboxgl.accessToken = mapToken;
 var map = new mapboxgl.Map({
       container: 'show-map', // Specify the container ID
       style: 'mapbox://styles/mapbox/outdoors-v11', // Specify which map style to use
-      center: campground.geolocation.coordinates, // Specify the starting position [lng, lat]
+      center: campground.geometry.coordinates, // Specify the starting position [lng, lat]
       zoom: 8 // Specify the starting zoom
     });
 
 
-  var popup = new mapboxgl.Popup({ offset: 30, openOnClick: true, anchor: 'bottom' }).setLngLat(campground.geolocation.coordinates)
+  var popup = new mapboxgl.Popup({ offset: 30, openOnClick: true, anchor: 'bottom' }).setLngLat(campground.geometry.coordinates)
     .setHTML(`<h1>${campground.title}</h1><p>${campground.location}`)
     .addTo(map);
 
   var marker = new mapboxgl.Marker({ 'color': '#314ccd'})
-    .setLngLat(campground.geolocation.coordinates)
+    .setLngLat(campground.geometry.coordinates)
     .addTo(map); // add the marker to the map
 
 

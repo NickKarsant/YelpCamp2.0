@@ -13,7 +13,7 @@ const ImageSchema = new Schema({
 ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_150');
 });
-
+const opts = { toJSON: {virtuals: true } };
 const CampgroundSchema = new Schema({
     title: String,
     thumbnail: String,
@@ -21,7 +21,7 @@ const CampgroundSchema = new Schema({
     price: Number,
     description: String,
     location: String,
-    geolocation: {
+    geometry: {
         type: {
             type: String,
             enum: ['Point'],
@@ -40,8 +40,12 @@ const CampgroundSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Review'
-        }
-    ]
+        },
+    ],
+}, opts);
+
+CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<a href="/yelpcamp/campgrounds/${this._id}"> ${this.title}</a>`;
 });
 
 

@@ -8,7 +8,6 @@
 
     <div class="card">
 
-
       <div id="carouselExampleControls" class="carousel slide">
         <div class="carousel-inner">
           <% campground.images.forEach((image, index) => {%>
@@ -62,11 +61,11 @@
   </div>
 
 
-  <div class="col-md-6">
+  <div class="col-md-6 col-sm-12">
 
     
       <div id='show-map' style='width: 450px; height: 450px;'></div>
-      <div class="row eleInfo">
+      <div class="row eleInfo ">
           <div class="geo lon col-3 offset-1">Longitude: <span id='lng'></span></div>
           <div class="geo lat col-3">Latitude: <span id='lat'></span></div>
           <div class="geo ele col-3">Elevation: <span id='ele'></span></div>
@@ -149,7 +148,7 @@
 
 
 
-<a href='/yelpcamp/campgrounds'> <button class="btn btn-lg btn-success">Go Back</button></a>
+<a href='/yelpcamp/campgrounds'> <button class="mb-3 btn btn-lg btn-success">Go Back</button></a>
 
 
 <script>
