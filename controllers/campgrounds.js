@@ -61,24 +61,21 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateCampground = async (req, res) => {
   const { id } = req.params;
-  console.log("controller req.body: " + req.body);
-  const campground = await Campground.findByIdAndUpdate(id, {
-    ...req.body.campground
-  });
+  console.log(req.body);
+  const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
   const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
   campground.images.push(...imgs);
   await campground.save();
   if (req.body.deleteImages) {
-    for (let filename of req.body.deleteImages) {
-      await cloudinary.uploader.destroy(filename);
-    }
-    await campground.updateOne({
-      $pull: { images: { filename: { $in: req.body.deleteImages } } }
-    });
+      for (let filename of req.body.deleteImages) {
+        console.dir(filename)
+          await cloudinary.uploader.destroy(filename);
+      }
+      await campground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
   }
-  req.flash("success", "Successfully updated campground!");
-  res.redirect(`/yelpcamp/campgrounds/${campground._id}`);
-};
+  req.flash('success', 'Successfully updated campground!');
+  res.redirect(`/yelpcamp/campgrounds/${campground._id}`)
+}
 
 module.exports.deleteCampground = async (req, res) => {
   const { id } = req.params;

@@ -30,7 +30,7 @@ main{
 }
 
 nav{
-  margin: 1em 1.7em;
+  margin: 1em 0;
   padding: 0;
   height: 40px !important;
   /* border: 1px solid red !important; */
@@ -142,8 +142,9 @@ a.nav-item:hover{
   width: 50%;
 }
 
+/* footer */
 .fixed-bottom{
-  margin-top:2em !important;
+  margin-top: 2em !important;
 }
 
 
