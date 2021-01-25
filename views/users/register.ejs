@@ -1,32 +1,36 @@
 <% layout('layouts/boilerplate')%>
-<h1>Register</h1>
-<form action="/yelpcamp/auth/register" method="POST" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-        <div class="invalid-feedback">Username required</div>
+<div class="top ui one column stackable center aligned page grid">
+    <div class="column eight wide card shadow mt-3">
+        <h1>Register</h1>
+        <form action="/yelpcamp/auth/register" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="uncenter form-label" for="username">Username</label>
+                <input class="form-control" type="text" id="username" name="username" required autofocus>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">Username required</div>
 
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-control" type="email" id="email" name="email" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-        <div class="invalid-feedback">Email required</div>
+            </div>
+            <div class="mb-3">
+                <label class="uncenter form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">Email required</div>
 
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-        <div class="invalid-feedback">Password required</div>
+            </div>
+            <div class="mb-3">
+                <label class="uncenter form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">Password required</div>
 
+            </div>
+            <button class="btn btn-block btn-success">Register</button>
+        </form>
     </div>
-    <button class="btn btn-success">Register</button>
-</form>
+</div>

@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
-<div class="top ui one column stackable center aligned page grid mt-5">
-  <div class="column twelve wide">
+<div class="top ui one column stackable center aligned page grid mt-2">
+  <div id="add" class="column twelve wide card shadow">
     <h1 class="text-center">New Campground</h1>
     <div class="col-10 offset-1">
       <form action="/yelpcamp/campgrounds" method="POST" novalidate class="validated-form"
@@ -46,68 +46,10 @@
         <div class="ui one column stackable center aligned page grid">
           <div class="column six wide">
             <div class="mb-3">
-              <button class="btn btn-lg btn-primary ">Add Campground</button>
+              <button class="btn btn-block btn-primary ">Add Campground</button>
             </div>
           </div>
         </div>
-
-
-
-
-        <!-- <div class="mb-3">
-          <label class="form-label" for="title">Title</label>
-          <input class="form-control" type="text" id="title" name="campground[title]" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="location">Location</label>
-          <input class="form-control" type="text" id="location" name="campground[location]" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-
-        <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="campground[image]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        <div class="mb-3">
-          <label class="form-label" for="price">Campground Price</label>
-          <div class="input-group">
-            <span class="input-group-text" id="price-label">$</span>
-            <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-              aria-describedby="price-label" name="campground[price]" required>
-          </div>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="description">Description</label>
-          <textarea class="form-control" type="text" id="description" name="campground[description]"
-            required></textarea>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="mb-3">
-          <div class="form-file custom-file">
-            <input type="file" class="form-file-input" id="image" name="image" multiple>
-            <label class="form-file-label" for="image">
-              <span class="form-file-text custom-file-label">Choose image(s)...</span>
-              <span class="form-file-button">Browse</span>
-            </label>
-          </div>
-        </div>
-        <div class="mb-3">
-          <button class="btn btn-success">Add Campground</button>
-        </div> -->
 
 
 
@@ -115,4 +57,5 @@
     </div>
   </div>
 </div>
-<button class="btn btn-lg btn-success"><a href="/yelpcamp/campgrounds">All Campgrounds</a></button>
+<br><br>
+<a href="/yelpcamp/campgrounds"><button class="btn btn-md btn-success">All Campgrounds</button></a>

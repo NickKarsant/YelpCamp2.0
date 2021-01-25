@@ -1,6 +1,9 @@
 /* *{
   border: 1px solid red;
 } */
+main{
+  padding-bottom: 3em;
+}
 
 .more, .caption, .preview{
   display: flex;
@@ -72,7 +75,9 @@ nav{
   padding: 0;
   height: 50%;
 }
-
+.nav-item a:visited{
+  color:white;
+}
 a:hover{
   color: white;
 }
@@ -135,5 +140,20 @@ a.nav-item:hover{
 
 #rating{
   width: 50%;
+}
+
+.fixed-bottom{
+  margin-top:2em !important;
+}
+
+
+/* login and Register */
+.uncenter {
+  display: flex;
+  justify-content: flex-start;
+}
+
+div#add.shadow{
+  padding: 0 !important;
 }
 
