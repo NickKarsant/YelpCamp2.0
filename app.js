@@ -78,7 +78,7 @@ app.use("/yelpcamp/campgrounds", campgroundRoutes);
 app.use("/yelpcamp/campgrounds/:id/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
-  res.send("REACT App goes here");
+  res.redirect("/yelpcamp");
 });
 
 // landing page
