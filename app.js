@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "production") {
   require("dotenv").config();
 }
 
@@ -18,9 +18,10 @@ const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 
+
 // database connection
 mongoose
-  .connect("mongodb://localhost:27017/yelpcamp", {
+  .connect((process.env.MONGODB_URI || "mongodb://localhost:27017/yelpcamp"), {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
