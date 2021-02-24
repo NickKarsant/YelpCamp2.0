@@ -96,6 +96,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error", { err });
 });
 
-app.listen(5000, () => {
-  console.log("Serving on port 3000");
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Serving on port 5000");
 });
