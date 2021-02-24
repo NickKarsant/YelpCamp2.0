@@ -2,9 +2,15 @@ const mongoose = require("mongoose");
 const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require("../models/campground");
+const User = require("../models/user");
 
 
-mongoose.connect(("mongodb://localhost:27017/yelpcamp" || MONGODB_URI), {
+// mongoose.connect(("mongodb://localhost:27017/yelpcamp" || MONGODB_URI), {
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useUnifiedTopology: true
+// });
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
@@ -21,13 +27,16 @@ db.once("open", () => {
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
+  const seedUser = await new User({
+    email: "nick@gmail.com"
+  })
   await Campground.deleteMany({});
   for (let i = 0; i < 300; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
     const random500 = Math.floor(Math.random() * 500);
     const randomIndex = Math.floor(Math.random() * 6);
     const camp = await new Campground({
-      author: "6007498d1cebd3ef0b1c39a2",
+      author: seedUser.id,
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price: `${random500}`,
