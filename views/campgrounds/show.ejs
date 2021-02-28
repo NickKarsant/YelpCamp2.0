@@ -33,7 +33,9 @@
       <div class="card-body">
         <h3 class="card-title"><%= campground.title%></h3>
         <p class="card-text"><%=campground.description%></p>
-        <p class="text-muted">Submitted by <%= campground.author.username %></p>
+
+        <p class="text-muted">Submitted by <%= campground.username %></p>
+
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><%= campground.location%></li>
@@ -41,10 +43,10 @@
       </ul>
       <% if (currentUser) {%>
       <!-- <form action="/yelpcamp/campgrounds/<%=campground._id%>/upload?_method=PUT" method="POST" enctype="multipart/form-data"> -->
-      <div class="list-group-item">
+      <!-- <div class="list-group-item">
         <label><button type="submit" class="btn btn-sm btn-primary">Add Images: </button></label>
         <input type="file" name="image" required>
-      </div>
+      </div> -->
       <!-- </form> -->
       <%}%>
 
@@ -125,7 +127,7 @@
 
             <br>
             <p class="card-text"><%=review.body%></p>
-            <p class="text-muted">Written by: <%=review.author.username %></p>
+            <!-- <p class="text-muted">Written by: <%=review.author.username %></p> -->
             <% if (review.author.equals(currentUser)) {%>
             <form class="validated-form"
               action="/yelpcamp/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">

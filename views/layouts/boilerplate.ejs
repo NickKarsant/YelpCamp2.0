@@ -18,6 +18,7 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <script src="https://kit.fontawesome.com/03d1dd37cf.js" crossorigin="anonymous" SameSite=None> </script>
 
@@ -30,8 +31,6 @@
 </head>
 
 <body class="d-flex flex-column vh-100">
-
-  <div id="root">REACT nav bar GOES HERE</div>
 
   
   <%- include('../partials/navbar') %>
@@ -48,18 +47,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 
-    <script type="text/javascript" src="/javascript/validation.js"></script>
-
+    
     
     <%- body %>
   </main>
-
-
-
-
-
+  
+  
+  
+  
+  
   <%- include('../partials/footer') %>
-
+  
+  <script type="text/javascript" src="/javascript/validation.js"></script>
+  <script rel="text/javascript" href="../../public/javascript/index.js"></script>
 
 </body>
 

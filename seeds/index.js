@@ -30,10 +30,12 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   const seedUser = await new User({
-    email: "nick@gmail.com"
+    email: "nick@gmail.com",
+    username: "nick"
   })
+  console.log(seedUser);
   await Campground.deleteMany({});
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 5; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
     const random500 = Math.floor(Math.random() * 500);
     const randomIndex = Math.floor(Math.random() * 6);
