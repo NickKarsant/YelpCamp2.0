@@ -37,18 +37,67 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 //   return seededUser;
 // })
 
-const seedDB = async () => {
+// const seedDB = async () => {
   
+//   // const seedUser = await new User({
+//   //   email: "nick@gmail.com",
+//   //   username: "nick"
+//   // });
+
+//   // const seededUser = await seedUser.save();
+  
+//   // const seededUser = makeUser();
+//   await Campground.deleteMany({});
+//   for (let i = 0; i > 30; i++) {
+//     const random1000 = Math.floor(Math.random() * 1000);
+//     const random500 = Math.floor(Math.random() * 500);
+//     const randomIndex = Math.floor(Math.random() * 6);
+//     const camp = await new Campground({
+//       author: "603c46b16eb2db7bb5e9922b",
+//       location: `${cities[random1000].city}, ${cities[random1000].state}`,
+//       title: `${sample(descriptors)} ${sample(places)}`,
+//       price: `${random500}`,
+//       geometry: {
+//         type: "Point",
+//         coordinates: [cities[random1000].longitude, cities[random1000].latitude]
+//       },
+//       images: [
+//         {
+//           url:
+//             "https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
+//           filename: "YelpCamp/velziw8u4he0hheuzr54"
+//         },
+//         {
+//           url:
+//             "https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg",
+//           filename: "YelpCamp/caxxgz6qyr56rjzebdpw"
+//         },
+//         {
+//           url:
+//             "https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg",
+//           filename: "YelpCamp/ov0jecbwlno73ftneled"
+//         }
+//       ],
+//       reviews: [],
+//       description:
+//         "Für Netting-Sets, die entwedertens zwei die von der Bank (nach vollständiger Anwendung aller anderen vorgenannten regulatorischen Anpassungen), muss der Betrag, der vom Ergänzungskapital abzuziehen ist, als die Summe sämtlicher Positionen, die insgesamt mehr als 10% des harten Kernkapitals am gesamten Eigenkapital. Derartige zum Ausgleich herangezogene Vermögenswerte sollten mit dem Risikogewicht versehen wiert werden."
+//     });
+//     console.log(camp);
+//     await camp.save();
+//   }
+// };
+
+
+
+
+
+const seedDB = async () => {
   // const seedUser = await new User({
   //   email: "nick@gmail.com",
   //   username: "nick"
-  // });
-
-  // const seededUser = await seedUser.save();
-  
-  // const seededUser = makeUser();
+  // })
   await Campground.deleteMany({});
-  for (let i = 0; i > 30; i++) {
+  for (let i = 0; i < 30; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
     const random500 = Math.floor(Math.random() * 500);
     const randomIndex = Math.floor(Math.random() * 6);
@@ -57,24 +106,18 @@ const seedDB = async () => {
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price: `${random500}`,
-      geometry: {
-        type: "Point",
-        coordinates: [cities[random1000].longitude, cities[random1000].latitude]
-      },
+      geometry: { type: "Point", coordinates: [cities[random1000].longitude, cities[random1000].latitude]  },
       images: [
         {
-          url:
-            "https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
           filename: "YelpCamp/velziw8u4he0hheuzr54"
         },
         {
-          url:
-            "https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg",
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg",
           filename: "YelpCamp/caxxgz6qyr56rjzebdpw"
         },
         {
-          url:
-            "https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg",
+          url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg",
           filename: "YelpCamp/ov0jecbwlno73ftneled"
         }
       ],
@@ -82,10 +125,12 @@ const seedDB = async () => {
       description:
         "Für Netting-Sets, die entwedertens zwei die von der Bank (nach vollständiger Anwendung aller anderen vorgenannten regulatorischen Anpassungen), muss der Betrag, der vom Ergänzungskapital abzuziehen ist, als die Summe sämtlicher Positionen, die insgesamt mehr als 10% des harten Kernkapitals am gesamten Eigenkapital. Derartige zum Ausgleich herangezogene Vermögenswerte sollten mit dem Risikogewicht versehen wiert werden."
     });
+    console.log(camp);
     await camp.save();
   }
 };
 
 seedDB().then(() => {
+  console.log("Database closes");
   mongoose.connection.close();
 });
