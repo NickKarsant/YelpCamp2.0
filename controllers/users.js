@@ -9,6 +9,9 @@ module.exports.register = async (req, res, next) => {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
         const registeredUser = await User.register(user, password);
+        
+        console.log(registeredUser);
+
         req.login(registeredUser, err => {
             if (err) return next(err);
             req.flash('success', `Welcome to Yelp Camp ${req.body.username}!`);
@@ -26,7 +29,6 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.login = (req, res) => {
     req.flash('success', `Welcome back ${req.body.username}!`);
-    console.log(req.body);
     const redirectUrl = req.session.returnTo || '/yelpcamp/campgrounds';
     delete req.session.returnTo;
     res.redirect(redirectUrl);

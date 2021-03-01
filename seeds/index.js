@@ -3,6 +3,8 @@ const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require("../models/campground");
 const User = require("../models/user");
+const catchAsync = require('../utils/catchAsync');
+
 require("dotenv").config();
 
 // mongoose.connect(("mongodb://localhost:27017/yelpcamp" || MONGODB_URI), {
@@ -25,15 +27,15 @@ db.once("open", () => {
 
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
-// const makeUser = async () => {
+// const makeUser = catchAsync(async () => {
 //   const seedUser = await new User({
 //     email: "nick@gmail.com",
 //     username: "nick"
 //   });
 
-//   await seedUser.save();
-//   return seedUser;
-// }
+//   const seededUser = await seedUser.save();
+//   return seededUser;
+// })
 
 const seedDB = async () => {
   
@@ -42,15 +44,16 @@ const seedDB = async () => {
   //   username: "nick"
   // });
 
-  // await seedUser.save();
-
+  // const seededUser = await seedUser.save();
+  
+  // const seededUser = makeUser();
   await Campground.deleteMany({});
   for (let i = 0; i > 30; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
     const random500 = Math.floor(Math.random() * 500);
     const randomIndex = Math.floor(Math.random() * 6);
     const camp = await new Campground({
-      author: "",
+      author: "603c46b16eb2db7bb5e9922b",
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price: `${random500}`,
@@ -81,7 +84,6 @@ const seedDB = async () => {
     });
     await camp.save();
   }
-  console.log(seedUser._id);
 };
 
 seedDB().then(() => {
