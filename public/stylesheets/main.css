@@ -107,6 +107,14 @@ a.nav-item:hover{
   color: white;
 }
 
+#delete {
+  float: right;
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
 .geo {
   /* border: 1px solid red; */
   padding: 0 !important;

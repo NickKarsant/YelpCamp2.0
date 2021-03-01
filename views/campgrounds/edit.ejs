@@ -79,5 +79,9 @@
   </div>
 </div>
 <a href="/yelpcamp/campgrounds/<%= campground._id%>"><button class="btn btn-success">Back To Campground</button></a>
+<form id="delete" action="/yelpcamp/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
+  <button class="ml-5 btn btn-danger">Delete Campground</button>
+</form>
+
 <br>
 <br>

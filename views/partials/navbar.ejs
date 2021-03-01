@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <a class="navbar-brand" href="/yelpcamp/campgrounds">Yelpcamp</a>
   <% if(currentUser) {%>
-    <a id="home" class="nav-link" href="/playlists"><span><i class="fas fa-home"></i></span>Home</a>
+    <a style="color: white;" id="home" class="nav-link mr-auto" href="/playlists"><span><i class="fas fa-home"></i></span>Home</a>
     <%}%>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,11 +13,11 @@
     <ul class="nav navbar-nav ml-auto">
       <% if (!currentUser) {%>
   <li class="nav-item">
-    <a class="nav-link" href="yelpcamp/auth/login"><span><i class="fas fa-sign-in-alt"></i></span>
+    <a class="nav-link" href="/yelpcamp/auth/login"><span><i class="fas fa-sign-in-alt"></i></span>
       Login</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="yelpcamp/auth/register"><span><i class="fas fa-user-plus"></i></span>
+    <a class="nav-link" href="/yelpcamp/auth/register"><span><i class="fas fa-user-plus"></i></span>
       Register</a>
   </li>
   <%} else {%>

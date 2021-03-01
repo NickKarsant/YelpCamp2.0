@@ -34,7 +34,7 @@
         <h3 class="card-title"><%= campground.title%></h3>
         <p class="card-text"><%=campground.description%></p>
 
-        <p class="text-muted">Submitted by <%= campground.username %></p>
+        <p class="text-muted">Submitted by <%= campground.author.username %></p>
 
       </div>
       <ul class="list-group list-group-flush">
@@ -54,6 +54,7 @@
       <div class="card-body">
         <button class="btn btn-warning"
           onclick=window.location.href="/yelpcamp/campgrounds/<%= campground._id %>/edit">Edit</button>
+
       </div>
       <%}%>
     </div>

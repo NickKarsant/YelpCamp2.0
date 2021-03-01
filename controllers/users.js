@@ -26,6 +26,7 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.login = (req, res) => {
     req.flash('success', `Welcome back ${req.body.username}!`);
+    console.log(req.body);
     const redirectUrl = req.session.returnTo || '/yelpcamp/campgrounds';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
