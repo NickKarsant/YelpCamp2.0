@@ -12,11 +12,7 @@
   </header>
 </div>
 
-<div id="map" class="mb-5">
-
-
-
-</div>
+<div id="map" class="mb-5"> </div>
 
 <div id="card-list" class="ui container">
 
@@ -27,6 +23,7 @@
       <div class="thumbnail">
         <div class="preview">
           <% if (campground.images.length) {%>
+        
           <img class="img-thumbnail card-fluid" src="<%=campground.images[0].url%>" alt="">
           <% } else {%>
           <img class="img-thumbnail card-fluid" src="https://via.placeholder.com/200" alt="">

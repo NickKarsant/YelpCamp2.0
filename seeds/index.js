@@ -52,17 +52,17 @@ const seedDB = async () => {
       images: [
         {
           // url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/velziw8u4he0hheuzr54.jpg",
-          url:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.chronogram.com%2Fhudsonvalley%2Fcamp-sites-of-all-stripes%2FContent%3Foid%3D8615101&psig=AOvVaw3GS5jVMO2mnkvotog7tWEI&ust=1621476162370000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLD8ws3T1PACFQAAAAAdAAAAABAD",
+          url:"https://d194ip2226q57d.cloudfront.net/images/Campsites-by-Water_CO-Shutterstock.original.jpg",
           filename: "YelpCamp/velziw8u4he0hheuzr54"
         },
         {
           // url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345707/YelpCamp/caxxgz6qyr56rjzebdpw.jpg",
-          url:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fd194ip2226q57d.cloudfront.net%2Fimages%2FCampsites-by-Water_CO-Shutterstock.original.jpg&imgrefurl=https%3A%2F%2Fwww.417mag.com%2Foutdoors%2Fcamping%2Fbest-campsites-near-water-southwest-mo%2F&tbnid=OuYdDSqAeQN1aM&vet=12ahUKEwihu9DG09TwAhWN0FMKHRAtAGYQMyg9egQIARBt..i&docid=z_WucZeaTAO7HM&w=1100&h=700&q=campsites&ved=2ahUKEwihu9DG09TwAhWN0FMKHRAtAGYQMyg9egQIARBt",
+          url:"https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/46/2019/06/09122028/NW2018_0914_004028-3025_IME-header-sm.jpg",
           filename: "YelpCamp/caxxgz6qyr56rjzebdpw"
         },
         {
           // url:"https://res.cloudinary.com/dh2243wtt/image/upload/v1611345708/YelpCamp/ov0jecbwlno73ftneled.jpg",
-          url:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.novascotia.com%2Fsites%2Fdefault%2Ffiles%2F2020-09%2FGraves-Island-camping-stars.jpg&imgrefurl=https%3A%2F%2Fwww.novascotia.com%2Fplaces-to-stay%2Fcampgrounds&tbnid=s6A9P0mpBUXDcM&vet=12ahUKEwj-993109TwAhUEsFMKHU7UAPkQMygGegUIARDdAQ..i&docid=dcB58ohvEciUlM&w=1920&h=1080&q=camping%20&ved=2ahUKEwj-993109TwAhUEsFMKHU7UAPkQMygGegUIARDdAQ",
+          url:"https://media.cntraveler.com/photos/607313c3d1058698d13c31b5/16:9/w_2560%2Cc_limit/FamilyCamping-2021-GettyImages-948512452-2.jpg",
           filename: "YelpCamp/ov0jecbwlno73ftneled"
         }
       ],
